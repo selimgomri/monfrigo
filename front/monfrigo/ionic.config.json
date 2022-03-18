@@ -1,0 +1,7 @@
+{
+  "name": "monfrigo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
