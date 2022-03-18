@@ -1,8 +1,9 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Inbox
-    </ion-title>
+    <ion-title> Mon frigo </ion-title>
+    <ion-button slot="end" fill="clear">
+      <ion-icon name="fast-food-outline"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -10,16 +11,21 @@
   <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">
-        Inbox
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
-  
+
+  <ion-text color="dark">
+    <h1>T'as quoi dans ton frigo ?</h1>
+  </ion-text>
+
+  <ion-toolbar>
+    <ion-searchbar></ion-searchbar>
+  </ion-toolbar>
+
+
+
   <ion-list>
-    <app-message *ngFor="let message of getMessages()" [message]="message"></app-message>
+    <app-message
+      *ngFor="let message of getMessages()"
+      [message]="message"
+    ></app-message>
   </ion-list>
 </ion-content>
