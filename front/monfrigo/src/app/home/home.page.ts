@@ -18,5 +18,4 @@ export class HomePage {
   getMessages(): Message[] {
     return this.data.getMessages();
   }
-
 }

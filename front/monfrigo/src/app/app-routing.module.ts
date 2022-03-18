@@ -11,6 +11,10 @@ const routes: Routes = [
     loadChildren: () => import('./view-message/view-message.module').then( m => m.ViewMessagePageModule)
   },
   {
+    path: 'myfrigo',
+    loadChildren: () => import('./myfrigo/myfrigo.module').then( m => m.MyfrigoPageModule)
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
