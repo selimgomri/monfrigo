@@ -3,14 +3,14 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\IngredientRepository;
+use App\Repository\RecipeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: IngredientRepository::class)]
+#[ORM\Entity(repositoryClass: RecipeRepository::class)]
 #[ApiResource]
-class Ingredient
+class Recipe
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -18,24 +18,26 @@ class Ingredient
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $name;
+    private $title;
 
-    #[ORM\Column(type: 'string', length: 45, nullable: true)]
-    private $unit;
+    #[ORM\Column(type: 'text')]
+    private $content;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(type: 'time')]
+    private $prepTime;
+
+    #[ORM\Column(type: 'string', length: 255)]
     private $picture;
 
-    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'ingredients')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $caterory;
+    #[ORM\Column(type: 'integer')]
+    private $guest;
 
-    #[ORM\OneToMany(mappedBy: 'ingredient', targetEntity: IngredientRecipe::class)]
+    #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: IngredientRecipe::class)]
     private $ingredientRecipes;
 
     public function __construct()
     {
-        $this->category = new ArrayCollection();
+        $this->ingredients = new ArrayCollection();
         $this->ingredientRecipes = new ArrayCollection();
     }
 
@@ -44,26 +46,38 @@ class Ingredient
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getTitle(): ?string
     {
-        return $this->name;
+        return $this->title;
     }
 
-    public function setName(string $name): self
+    public function setTitle(string $title): self
     {
-        $this->name = $name;
+        $this->title = $title;
 
         return $this;
     }
 
-    public function getUnit(): ?string
+    public function getContent(): ?string
     {
-        return $this->unit;
+        return $this->content;
     }
 
-    public function setUnit(?string $unit): self
+    public function setContent(string $content): self
     {
-        $this->unit = $unit;
+        $this->content = $content;
+
+        return $this;
+    }
+
+    public function getPrepTime(): ?\DateTimeInterface
+    {
+        return $this->prepTime;
+    }
+
+    public function setPrepTime(\DateTimeInterface $prepTime): self
+    {
+        $this->prepTime = $prepTime;
 
         return $this;
     }
@@ -73,21 +87,21 @@ class Ingredient
         return $this->picture;
     }
 
-    public function setPicture(?string $picture): self
+    public function setPicture(string $picture): self
     {
         $this->picture = $picture;
 
         return $this;
     }
 
-    public function getCaterory(): ?Category
+    public function getGuest(): ?int
     {
-        return $this->caterory;
+        return $this->guest;
     }
 
-    public function setCaterory(?Category $caterory): self
+    public function setGuest(int $guest): self
     {
-        $this->caterory = $caterory;
+        $this->guest = $guest;
 
         return $this;
     }
@@ -104,7 +118,7 @@ class Ingredient
     {
         if (!$this->ingredientRecipes->contains($ingredientRecipe)) {
             $this->ingredientRecipes[] = $ingredientRecipe;
-            $ingredientRecipe->setIngredient($this);
+            $ingredientRecipe->setRecipe($this);
         }
 
         return $this;
@@ -114,8 +128,8 @@ class Ingredient
     {
         if ($this->ingredientRecipes->removeElement($ingredientRecipe)) {
             // set the owning side to null (unless already changed)
-            if ($ingredientRecipe->getIngredient() === $this) {
-                $ingredientRecipe->setIngredient(null);
+            if ($ingredientRecipe->getRecipe() === $this) {
+                $ingredientRecipe->setRecipe(null);
             }
         }
 
