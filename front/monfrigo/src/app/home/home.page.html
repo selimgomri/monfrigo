@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title> Mon frigo </ion-title>
-    <ion-button slot="end" fill="clear">
+    <ion-button slot="end" fill="clear" [routerLink]="['/myfrigo']">
       <ion-icon name="fast-food-outline"></ion-icon>
     </ion-button>
   </ion-toolbar>
@@ -23,9 +23,9 @@
 
 
   <ion-list>
-    <app-message
+    <!-- <app-message
       *ngFor="let message of getMessages()"
       [message]="message"
-    ></app-message>
+    ></app-message> -->
   </ion-list>
 </ion-content>
