@@ -7,6 +7,7 @@ import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { MessageComponentModule } from '../message/message.module';
 import { IngredientComponent } from '../ingredient/ingredient.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { IngredientComponent } from '../ingredient/ingredient.component';
     FormsModule,
     IonicModule,
     MessageComponentModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    
   ],
   declarations: [HomePage, IngredientComponent]
 })

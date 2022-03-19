@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataService, Message } from '../services/data.service';
 
 @Component({
@@ -6,8 +6,12 @@ import { DataService, Message } from '../services/data.service';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
   constructor(private data: DataService) {}
+
+  ngOnInit() {
+    console.log('hola');
+  }
 
   refresh(ev) {
     setTimeout(() => {
