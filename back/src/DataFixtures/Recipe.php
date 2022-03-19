@@ -7,8 +7,10 @@ use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class Recipe extends Fixture
+class RecipeFixtures extends Fixture
 {
+    public const RECIPE_REFERENCE = "Recipe ";
+
     public function load(ObjectManager $manager): void
     {
         for ($i = 1; $i <= 50; $i++) {  
@@ -18,6 +20,7 @@ class Recipe extends Fixture
             $recipe->setPrepTime(new DateTime());
             $recipe->setPicture('Picture ' . $i);
             $recipe->setGuest(rand(1,10));
+            $this->setReference(self::RECIPE_REFERENCE, $recipe);
             $manager->persist($recipe);  
         } 
 

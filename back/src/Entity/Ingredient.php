@@ -28,14 +28,13 @@ class Ingredient
 
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'ingredients')]
     #[ORM\JoinColumn(nullable: false)]
-    private $caterory;
+    private $category;
 
     #[ORM\OneToMany(mappedBy: 'ingredient', targetEntity: IngredientRecipe::class)]
     private $ingredientRecipes;
 
     public function __construct()
     {
-        $this->category = new ArrayCollection();
         $this->ingredientRecipes = new ArrayCollection();
     }
 
@@ -80,14 +79,14 @@ class Ingredient
         return $this;
     }
 
-    public function getCaterory(): ?Category
+    public function getCategory(): ?Category
     {
-        return $this->caterory;
+        return $this->category;
     }
 
-    public function setCaterory(?Category $caterory): self
+    public function setCategory(?Category $category): self
     {
-        $this->caterory = $caterory;
+        $this->category = $category;
 
         return $this;
     }

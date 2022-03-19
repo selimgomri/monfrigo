@@ -20,7 +20,7 @@ class Category
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    #[ORM\OneToMany(mappedBy: 'caterory', targetEntity: Ingredient::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Ingredient::class, orphanRemoval: true)]
     private $ingredients;
 
     public function __construct()
@@ -57,7 +57,7 @@ class Category
     {
         if (!$this->ingredients->contains($ingredient)) {
             $this->ingredients[] = $ingredient;
-            $ingredient->setCaterory($this);
+            $ingredient->setCategory($this);
         }
 
         return $this;
@@ -67,8 +67,8 @@ class Category
     {
         if ($this->ingredients->removeElement($ingredient)) {
             // set the owning side to null (unless already changed)
-            if ($ingredient->getCaterory() === $this) {
-                $ingredient->setCaterory(null);
+            if ($ingredient->getCategory() === $this) {
+                $ingredient->setCategory(null);
             }
         }
 
