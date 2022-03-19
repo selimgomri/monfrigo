@@ -11,15 +11,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: IngredientRepository::class)]
 #[ApiResource(
-    collectionOperations: [
-        'get' =>  [
-            'normalization_context' => ['groups' => 'read:Ingredient']
-        ]
-    ],
-    itemOperations: [
-        'get' =>  [
-            'normalization_context' => ['groups' => 'read:Ingredient']
-        ]
+    collectionOperations: [ 'get' ],
+    itemOperations: [ 'get' ],
+    normalizationContext: [
+        'groups' => [ 'read:Ingredient' ]
     ]
 )]
 class Ingredient
@@ -31,7 +26,7 @@ class Ingredient
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups('read:Ingredient')]
+    #[Groups([ 'read:Ingredient', 'read:IngredientRecipe' ])]
     private $name;
 
     #[ORM\Column(type: 'string', length: 45, nullable: true)]

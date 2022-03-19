@@ -35,7 +35,7 @@ class Category
     private $id;
     
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups('read:Ingredient', 'read:Category')]
+    #[Groups([ 'read:Ingredient', 'read:Category' ])]
     private $name;
 
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Ingredient::class, orphanRemoval: true)]
