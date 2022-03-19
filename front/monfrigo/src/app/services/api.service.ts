@@ -7,10 +7,15 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  private $url = 'https://localhost:8000/api/ingredients?name=';
   constructor(private http: HttpClient) {}
 
-  getIngredients(ingredient:string): Observable<any> {
-    return this.http.get<any>(this.$url+ingredient);
+  getIngredients(): Observable<any> {
+    const $url = 'https://localhost:8000/api/ingredients';
+    return this.http.get<any>($url);
+  }
+
+  getRecipes(): Observable<any> {
+    const $url = 'https://localhost:8000/api/recipes';
+    return this.http.get<any>($url);
   }
 }

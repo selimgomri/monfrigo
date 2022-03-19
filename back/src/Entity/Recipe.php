@@ -12,32 +12,41 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
 #[ApiResource(
     collectionOperations: [ 'get' ],
-    itemOperations: [ 'get' ]
+    itemOperations: [ 'get' ],
+    normalizationContext: [
+        'groups' => [ 'read:Recipe' ]
+    ]
 )]
 class Recipe
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups( 'read:Recipe' )]
     private $id;
-
+    
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups('read:IngredientRecipe')]
+    #[Groups( 'read:Recipe' )]
     private $title;
 
     #[ORM\Column(type: 'text')]
+    #[Groups( 'read:Recipe' )]
     private $content;
 
     #[ORM\Column(type: 'time')]
+    #[Groups( 'read:Recipe' )]
     private $prepTime;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups( 'read:Recipe' )]
     private $picture;
 
     #[ORM\Column(type: 'integer')]
+    #[Groups( 'read:Recipe' )]
     private $guest;
 
     #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: IngredientRecipe::class)]
+    #[Groups( 'read:Recipe' )]
     private $ingredientRecipes;
 
     public function __construct()

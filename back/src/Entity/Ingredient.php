@@ -29,7 +29,7 @@ class Ingredient
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups([ 'read:Ingredient', 'read:IngredientRecipe' ])]
+    #[Groups([ 'read:Ingredient', 'read:IngredientRecipe', 'read:Recipe' ])]
     private $name;
 
     #[ORM\Column(type: 'string', length: 45, nullable: true)]

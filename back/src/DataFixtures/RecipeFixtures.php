@@ -18,7 +18,7 @@ class RecipeFixtures extends Fixture
             $recipe->setTitle('Title ' . $i);  
             $recipe->setContent('Content ' . $i);
             $recipe->setPrepTime(new DateTime());
-            $recipe->setPicture('Picture ' . $i);
+            $recipe->setPicture('https://source.unsplash.com/random/50x50?recipe/' . $i);
             $recipe->setGuest(rand(1,10));
             $this->setReference(self::RECIPE_REFERENCE . $i, $recipe);
             $manager->persist($recipe);  
