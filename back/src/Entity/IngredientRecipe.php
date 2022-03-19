@@ -5,25 +5,36 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\IngredientRecipeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: IngredientRecipeRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    collectionOperations: [ 'get' ],
+    itemOperations: [ 'get' ],
+    normalizationContext: [
+        'groups' => [ 'read:IngredientRecipe' ]
+    ]
+)]
 class IngredientRecipe
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups('read:IngredientRecipe')]
     private $id;
 
     #[ORM\Column(type: 'float')]
+    #[Groups('read:IngredientRecipe')]
     private $quantity;
 
     #[ORM\ManyToOne(targetEntity: Ingredient::class, inversedBy: 'ingredientRecipes')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups('read:IngredientRecipe')]
     private $ingredient;
 
     #[ORM\ManyToOne(targetEntity: Recipe::class, inversedBy: 'ingredientRecipes')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups('read:IngredientRecipe')]
     private $recipe;
 
     public function getId(): ?int

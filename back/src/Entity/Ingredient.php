@@ -7,27 +7,44 @@ use App\Repository\IngredientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: IngredientRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    collectionOperations: [
+        'get' =>  [
+            'normalization_context' => ['groups' => 'read:Ingredient']
+        ]
+    ],
+    itemOperations: [
+        'get' =>  [
+            'normalization_context' => ['groups' => 'read:Ingredient']
+        ]
+    ]
+)]
 class Ingredient
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups('read:Ingredient')]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups('read:Ingredient')]
     private $name;
 
     #[ORM\Column(type: 'string', length: 45, nullable: true)]
+    #[Groups('read:Ingredient')]
     private $unit;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Groups('read:Ingredient')]
     private $picture;
 
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'ingredients')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups('read:Ingredient')]
     private $category;
 
     #[ORM\OneToMany(mappedBy: 'ingredient', targetEntity: IngredientRecipe::class)]

@@ -17,7 +17,7 @@ class IngredientFixtures extends Fixture implements DependentFixtureInterface
             $ingredient = new Ingredient;  
             $ingredient->setName('Ingredient ' . $i);  
             $ingredient->setCategory($this->getReference(CategoryFixtures::CATEGORY_REFERENCE . $i));
-            $this->setReference(self::INGREDIENT_REFERENCE, $ingredient);
+            $this->setReference(self::INGREDIENT_REFERENCE . $i, $ingredient);
             $ingredient->setUnit('Unit ' . $i);
             $ingredient->setPicture('Picture ' . $i);
 
