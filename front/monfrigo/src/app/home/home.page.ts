@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Ingredient } from '../interface/Ingredient';
+import { ApiService } from '../services/api.service';
 import { DataService, Message } from '../services/data.service';
 
 @Component({
@@ -7,11 +9,10 @@ import { DataService, Message } from '../services/data.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  constructor(private data: DataService) {}
+  ingredients: Ingredient;
+  constructor(private data: DataService, private api: ApiService) {}
 
-  ngOnInit() {
-    console.log('hola');
-  }
+  ngOnInit() {}
 
   refresh(ev) {
     setTimeout(() => {
@@ -21,5 +22,12 @@ export class HomePage implements OnInit {
 
   getMessages(): Message[] {
     return this.data.getMessages();
+  }
+
+  setFilteredItems(input: string) {
+    console.log("aaaa")
+    this.api.getIngredients(input).subscribe((data) => {
+      this.ingredients = data['hydra:member'];
+    });
   }
 }
