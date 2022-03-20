@@ -9,7 +9,7 @@ import { DataService, Message } from '../services/data.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  ingredients: Ingredient;
+  ingredients: Ingredient[];
   constructor(private data: DataService, private api: ApiService) {}
 
   ngOnInit() {}
@@ -25,7 +25,6 @@ export class HomePage implements OnInit {
   }
 
   setFilteredItems(input: string) {
-    console.log("aaaa")
     this.api.getIngredients(input).subscribe((data) => {
       this.ingredients = data['hydra:member'];
     });

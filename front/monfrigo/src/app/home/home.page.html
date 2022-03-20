@@ -25,7 +25,7 @@
     <app-ingredient [ingredients]="ingredients" ></app-ingredient>
   </ion-list>
 
-  <ion-text class="ion-text-center" color="dark">
+  <ion-text class="ion-text-center" color="dark" *ngIf="!ingredients" >
     <h1>T'as quoi dans ton frigo ?</h1>
   </ion-text>
 
