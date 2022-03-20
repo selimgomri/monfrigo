@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../recipe-list/recipe-list.page.scss"
+    ],
+    "names": [],
+    "file": "recipe-list.page.css"
+}

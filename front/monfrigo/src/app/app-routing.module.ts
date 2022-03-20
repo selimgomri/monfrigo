@@ -15,12 +15,16 @@ const routes: Routes = [
     loadChildren: () => import('./myfrigo/myfrigo.module').then( m => m.MyfrigoPageModule)
   },
   {
+    path: 'recipe-list',
+    loadChildren: () => import('./recipe-list/recipe-list.module').then( m => m.RecipeListPageModule)
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
   },
   {
-    path: 'recipe-item',
+    path: 'recipe-item/:id',
     loadChildren: () => import('./recipe-item/recipe-item.module').then( m => m.RecipeItemPageModule)
   },
 ];

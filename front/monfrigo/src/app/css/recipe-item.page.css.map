@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,gBAAgB,CAAC;EACf,MAAM,EAAE,KAAK;EACb,KAAK,EAAE,IAAI;EACX,UAAU,EAAE,KAAK;CAClB",
+    "sources": [
+        "../recipe-item/recipe-item.page.scss"
+    ],
+    "names": [],
+    "file": "recipe-item.page.css"
+}

@@ -1,0 +1,13 @@
+h1 {
+  font-size: 1.5rem;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+ion-searchbar {
+  margin: 1em 0;
+}
+/*# sourceMappingURL=home.page.css.map */

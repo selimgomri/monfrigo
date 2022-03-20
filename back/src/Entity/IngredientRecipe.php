@@ -29,7 +29,7 @@ class IngredientRecipe
 
     #[ORM\ManyToOne(targetEntity: Ingredient::class, inversedBy: 'ingredientRecipes')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups('read:IngredientRecipe')]
+    #[Groups(['read:IngredientRecipe', 'read:Recipe'])]
     private $ingredient;
 
     #[ORM\ManyToOne(targetEntity: Recipe::class, inversedBy: 'ingredientRecipes')]

@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Mon Frigo</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-list-header>
+      <h2>Recettes réalisables</h2>
+    </ion-list-header>
+
+    <ion-item *ngFor="let recipe of recipes" (click)="goToRecipe(recipe.id)">
+      <ion-avatar slot="start">
+        <img src="{{recipe.picture}}" />
+      </ion-avatar>
+      <ion-label>
+        <h3>{{recipe.title}}</h3>
+        <p><ion-icon name="people-outline"></ion-icon> : <span>{{recipe.guest}}</span> - <span><ion-icon name="hourglass-outline"></ion-icon> : {{recipe.prepTime | date:"m"}} minutes</span></p>
+        <p>{{recipe.content}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
