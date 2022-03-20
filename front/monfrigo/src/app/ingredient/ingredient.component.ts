@@ -1,5 +1,5 @@
 import { Ingredient } from './../interface/Ingredient';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ApiService } from '../services/api.service';
 
 @Component({
@@ -8,14 +8,9 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./ingredient.component.scss'],
 })
 export class IngredientComponent implements OnInit {
-  ingredients: Ingredient;
+  @Input() ingredients: any;
 
-  constructor(private api: ApiService) {}
+  constructor() {}
 
-  ngOnInit() {
-    this.api.getIngredients('p').subscribe((data) => {
-      this.ingredients = data['hydra:member'];
-      console.log(this.ingredients);
-    });
-  }
+  ngOnInit() {}
 }
