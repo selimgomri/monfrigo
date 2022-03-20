@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 
 @Component({
@@ -9,9 +10,11 @@ import { ApiService } from '../services/api.service';
 export class RecipeListPage implements OnInit {
   @Input()
   public recipes!: any[];
+  public recipe: any;
 
 
-  constructor(private api: ApiService) { }
+
+  constructor(private api: ApiService, private router: Router) { }
 
   ngOnInit() {
     this.getRecipes();
@@ -23,5 +26,16 @@ export class RecipeListPage implements OnInit {
       console.log('response :', response['hydra:member']);
     });
   }
+
+  goToRecipe(id: string) {
+    this.router.navigate(["/recipe-item/", id]);
+  }
+
+  // getOneRecipe(id: number) {
+  //   this.api.getOneRecipe(id).subscribe(response => {
+  //     this.recipe = response;
+  //     console.log('response :', response);
+  //   });
+  // }
 
 }

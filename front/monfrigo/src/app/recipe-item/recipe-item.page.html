@@ -1,9 +1,27 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>recipe-item</ion-title>
+    <ion-buttons>
+      <ion-back-button slot="start"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{recipe.title}}</ion-title>
   </ion-toolbar>
 </ion-header>
+<ion-content [fullscreen]="true">
+  <ion-card *ngIf="isFetch">
+    <ion-card-header>
+      <img class="recipe__picture" src="{{recipe.picture}}" />
+      <ion-card-subtitle><p><ion-icon name="people-outline"></ion-icon> : <span>{{recipe.guest}}</span> - <span><ion-icon name="hourglass-outline"></ion-icon> : {{recipe.prepTime | date:"m"}} minutes</span></p></ion-card-subtitle>
+      <ion-card-title>{{recipe.title}}</ion-card-title>
+    </ion-card-header>
 
-<ion-content>
-
+    <ion-card-content>
+      <p>Ingredients :</p>
+      <ion-list>
+        <ion-item *ngFor="let ingredient of recipe.ingredientRecipes">
+          <p> - {{ingredient.name}}</p>
+        </ion-item>
+      </ion-list>
+      {{recipe.content}}
+    </ion-card-content>
+  </ion-card>
 </ion-content>

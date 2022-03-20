@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../ingredient/ingredient.component.scss"
+    ],
+    "names": [],
+    "file": "ingredient.component.css"
+}

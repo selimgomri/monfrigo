@@ -13,7 +13,7 @@ export class IngredientComponent implements OnInit {
   constructor(private api: ApiService) {}
 
   ngOnInit() {
-    this.api.getIngredients('p').subscribe((data) => {
+    this.api.getIngredients().subscribe((data) => {
       this.ingredients = data['hydra:member'];
       console.log(this.ingredients);
     });

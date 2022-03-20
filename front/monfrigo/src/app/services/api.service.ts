@@ -18,4 +18,9 @@ export class ApiService {
     const $url = 'https://localhost:8000/api/recipes';
     return this.http.get<any>($url);
   }
+
+  getOneRecipe(id: string): Observable<any> {
+    const $url = `https://localhost:8000/api/recipes/${id}`;
+    return this.http.get<any>($url);
+  }
 }

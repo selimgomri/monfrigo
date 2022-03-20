@@ -1,10 +1,18 @@
-<ion-content>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Mon Frigo</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
   <ion-list>
     <ion-list-header>
       <h2>Recettes réalisables</h2>
     </ion-list-header>
 
-    <ion-item *ngFor="let recipe of recipes">
+    <ion-item *ngFor="let recipe of recipes" (click)="goToRecipe(recipe.id)">
       <ion-avatar slot="start">
         <img src="{{recipe.picture}}" />
       </ion-avatar>
